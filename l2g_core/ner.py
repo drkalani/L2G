@@ -19,7 +19,7 @@ from urllib.request import Request, urlopen
 
 from typing import Literal
 
-from geneminer_core.schemas import MentionRecord
+from l2g_core.schemas import MentionRecord
 
 DEFAULT_NER_MODEL = "pruas/BENT-PubMedBERT-NER-Gene"
 NerMethod = Literal["transformers", "bent"]
@@ -30,7 +30,7 @@ def load_ner_pipeline(
     model_name: str = DEFAULT_NER_MODEL,
     processor: Optional[str] = None,
 ):
-    from geneminer_core.devices import device_for_pipeline, pipeline_device_index
+    from l2g_core.devices import device_for_pipeline, pipeline_device_index
 
     transformers_pipeline = import_module("transformers").pipeline
     device = device_for_pipeline(processor)

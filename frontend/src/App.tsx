@@ -112,7 +112,7 @@ function Layout({ children }: { children: ReactNode }) {
           }}
         >
           <Link to="/" style={{ fontWeight: 700, fontSize: "1.15rem" }}>
-            GeneMiner
+            L2G
           </Link>
           <nav style={{ display: "flex", gap: "1.25rem" }}>
             <Link to="/">Overview</Link>

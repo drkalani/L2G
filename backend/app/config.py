@@ -10,7 +10,7 @@ from pydantic import field_validator
 
 
 class Settings(BaseSettings):
-    app_name: str = "GeneMiner API"
+    app_name: str = "L2G API"
     bent_service_url: str = ""
     data_dir: Path = Path(__file__).resolve().parent.parent.parent / "data"
     cors_allow_all: bool = False

@@ -16,8 +16,8 @@ from app.schemas.models import ArticleInput, KFoldTrainJobCreate, TrainJobCreate
 from app.services import job_store
 from app.services.project_service import project_dir
 
-from geneminer_core.metrics import binary_classification_metrics, confusion_binary
-from geneminer_core.relevance import predict_relevance, train_relevance_classifier
+from l2g_core.metrics import binary_classification_metrics, confusion_binary
+from l2g_core.relevance import predict_relevance, train_relevance_classifier
 
 
 def _json_safe(obj: Any) -> Any:

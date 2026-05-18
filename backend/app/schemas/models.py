@@ -159,7 +159,7 @@ class LitSuggestCompareRequest(BaseModel):
 
     primary: List[Dict[str, Any]] = Field(
         ...,
-        description="Rows with pmid and label (or relevant/y) from GeneMiner or your model.",
+        description="Rows with pmid and label (or relevant/y) from L2G or your model.",
     )
     litsuggest: List[Dict[str, Any]] = Field(
         ...,

@@ -1,4 +1,4 @@
-# API layer (install geneminer_platform from repo root: pip install -e ".[api]")
+# API layer (install l2g_platform from repo root: pip install -e ".[api]")
 # Or: pip install -r backend/requirements-api.txt after pip install -e .
 
 fastapi>=0.109

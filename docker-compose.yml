@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: backend/Dockerfile
-    container_name: geneminer-backend
+    container_name: l2g-backend
     restart: unless-stopped
     environment:
       - HF_TOKEN=${HF_TOKEN}
@@ -13,7 +13,7 @@ services:
       - BENT_SERVICE_URL=${BENT_SERVICE_URL:-}
       - DATA_DIR=/app/data
     volumes:
-      - ${HOME:-/root}/geneminer-data:/app/data
+      - ${HOME:-/root}/l2g-data:/app/data
       - ${HOME:-/root}/.cache/huggingface:/app/.cache/huggingface
       - bent-cache:/root/.cache/bent
     ports:
@@ -30,7 +30,7 @@ services:
     build:
       context: .
       dockerfile: bent_service/Dockerfile
-    container_name: geneminer-bent-runtime
+    container_name: l2g-bent-runtime
     environment:
       - TF_CPP_MIN_LOG_LEVEL=3
     volumes:
@@ -53,9 +53,9 @@ services:
       args:
         VITE_API_BASE: ${VITE_API_BASE:-/api}
         VITE_COLAB_GITHUB_USERNAME: ${VITE_COLAB_GITHUB_USERNAME:-drkalani}
-        VITE_COLAB_GITHUB_REPO: ${VITE_COLAB_GITHUB_REPO:-GeneMiner}
+        VITE_COLAB_GITHUB_REPO: ${VITE_COLAB_GITHUB_REPO:-L2G}
         VITE_COLAB_GITHUB_BRANCH: ${VITE_COLAB_GITHUB_BRANCH:-main}
-    container_name: geneminer-frontend
+    container_name: l2g-frontend
     restart: unless-stopped
     depends_on:
       backend:
@@ -65,10 +65,10 @@ services:
 
   gateway:
     build: ./gateway
-    container_name: geneminer-gateway
+    container_name: l2g-gateway
     restart: unless-stopped
     environment:
-      - SSL_DOMAIN=${SSL_DOMAIN:-geneminer.aiteb.app}
+      - SSL_DOMAIN=${SSL_DOMAIN:-l2g.aiteb.app}
       - SSL_DOMAIN_ALIASES=${SSL_DOMAIN_ALIASES:-}
       - SSL_CERTBOT_WEBROOT=${SSL_CERTBOT_WEBROOT:-/var/www/certbot}
     ports:

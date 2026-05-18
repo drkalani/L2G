@@ -12,7 +12,7 @@ RUN apt-get update \
        gcc \
     && rm -rf /var/lib/apt/lists/*
 
-COPY geneminer_core /service/geneminer_core
+COPY l2g_core /service/l2g_core
 COPY bent_service /service/bent_service
 
 RUN pip install --upgrade pip \

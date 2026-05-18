@@ -1,4 +1,4 @@
-"""GeneMiner FastAPI entrypoint."""
+"""L2G FastAPI entrypoint."""
 
 from __future__ import annotations
 
@@ -13,7 +13,7 @@ settings = get_settings()
 app = FastAPI(
     title=settings.app_name,
     version="1.0.0",
-    description="GeneMiner: disease-agnostic literature mining API (BioBERT relevance, NER, normalization).",
+    description="L2G: disease-agnostic literature mining API (BioBERT relevance, NER, normalization).",
 )
 print("Loaded CORS origins:", settings.cors_origins)
 print("CORS allow_all:", settings.cors_allow_all, "allow_credentials:", settings.cors_allow_credentials)

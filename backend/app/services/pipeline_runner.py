@@ -10,13 +10,13 @@ from app.config import get_settings
 from app.schemas.models import ArticleInput, PipelineRunRequest
 from app.services.project_service import project_dir
 
-from geneminer_core.pipeline import (
+from l2g_core.pipeline import (
     run_classify_only,
     run_full_pipeline,
     run_normalize_only,
     run_ner_only,
 )
-from geneminer_core.schemas import ArticleRow
+from l2g_core.schemas import ArticleRow
 
 
 def articles_to_rows(articles: List[ArticleInput]) -> List[ArticleRow]:

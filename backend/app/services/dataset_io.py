@@ -333,7 +333,7 @@ def export_bundle_bytes(project_id: str, fmt: Literal["pkl", "xlsx"]) -> Tuple[b
         return (
             pickle.dumps(frames, protocol=pickle.HIGHEST_PROTOCOL),
             "application/octet-stream",
-            "geneminer_last_run_bundle.pkl",
+            "l2g_last_run_bundle.pkl",
         )
 
     bio = io.BytesIO()
@@ -344,7 +344,7 @@ def export_bundle_bytes(project_id: str, fmt: Literal["pkl", "xlsx"]) -> Tuple[b
     return (
         bio.getvalue(),
         "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-        "geneminer_last_run_bundle.xlsx",
+        "l2g_last_run_bundle.xlsx",
     )
 
 

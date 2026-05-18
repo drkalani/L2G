@@ -7,7 +7,7 @@ import json
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from typing import Any, Dict, List, Tuple
 
-from geneminer_core.ner import extract_entities_with_bent_partitioned
+from l2g_core.ner import extract_entities_with_bent_partitioned
 
 
 def _safe_int(value: Any, default: int = 0) -> int:

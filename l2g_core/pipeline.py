@@ -9,10 +9,10 @@ from typing import Any, Dict, List, Optional, Tuple
 import numpy as np
 import pandas as pd
 
-from geneminer_core.ner import NerMethod, extract_entities_with_method, load_ner_pipeline
-from geneminer_core.normalization import normalize_mentions_df
-from geneminer_core.relevance import predict_relevance, relevance_model_input_mode
-from geneminer_core.schemas import ArticleRow
+from l2g_core.ner import NerMethod, extract_entities_with_method, load_ner_pipeline
+from l2g_core.normalization import normalize_mentions_df
+from l2g_core.relevance import predict_relevance, relevance_model_input_mode
+from l2g_core.schemas import ArticleRow
 
 
 class PipelineStep(str, Enum):

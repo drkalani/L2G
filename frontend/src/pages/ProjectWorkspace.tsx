@@ -80,9 +80,9 @@ type ClassificationRow = {
 
 type WorkspaceStep = "backend" | "train" | "integrations" | "pipeline";
 
-const makeProjectJobStateKey = (projectId: string) => `geneminer-job-state:${projectId}`;
+const makeProjectJobStateKey = (projectId: string) => `l2g-job-state:${projectId}`;
 const makeProjectWorkspaceStateKey = (projectId: string) =>
-  `geneminer-workspace-state:${projectId}`;
+  `l2g-workspace-state:${projectId}`;
 const WORKSPACE_STATE_VERSION = 1;
 
 const isWorkspaceStep = (value: unknown): value is WorkspaceStep => {
@@ -2710,7 +2710,7 @@ export function ProjectWorkspace() {
                       projectId,
                       "bundle",
                       "pkl",
-                      "geneminer_last_run_bundle.pkl"
+                      "l2g_last_run_bundle.pkl"
                     )
                     .catch((err) => setErr((err as Error).message))
                 }
@@ -2727,7 +2727,7 @@ export function ProjectWorkspace() {
                       projectId,
                       "bundle",
                       "xlsx",
-                      "geneminer_last_run_bundle.xlsx"
+                      "l2g_last_run_bundle.xlsx"
                     )
                     .catch((err) => setErr((err as Error).message))
                 }

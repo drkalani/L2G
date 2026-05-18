@@ -17,8 +17,8 @@ from transformers import (
     TrainingArguments,
 )
 
-from geneminer_core.devices import ProcessorKind, resolve_torch_device
-from geneminer_core.text_cleaning import clean_text
+from l2g_core.devices import ProcessorKind, resolve_torch_device
+from l2g_core.text_cleaning import clean_text
 
 
 class AbstractDataset(Dataset):

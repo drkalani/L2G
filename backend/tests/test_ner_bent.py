@@ -37,7 +37,7 @@ def fake_bent_module(annotate_fn: Callable[..., None]) -> Iterator[None]:
 
 class TestNerBentMethod(unittest.TestCase):
     def test_extract_entities_with_bent_uses_ann_outputs(self) -> None:
-        from geneminer_core.ner import extract_entities_with_bent
+        from l2g_core.ner import extract_entities_with_bent
 
         calls: List[tuple[tuple, dict]] = []
 
@@ -66,7 +66,7 @@ class TestNerBentMethod(unittest.TestCase):
         self.assertEqual(len(calls), 1)
 
     def test_fallback_signature_tries_variants_until_success(self) -> None:
-        from geneminer_core.ner import _invoke_bent_annotate
+        from l2g_core.ner import _invoke_bent_annotate
         from tempfile import TemporaryDirectory
 
         calls: List[dict] = []

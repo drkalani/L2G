@@ -1,4 +1,4 @@
-# GeneMiner Platform
+# L2G Platform
 
 End-to-end system for **disease-agnostic** literature mining: train a **binary relevance** classifier on your labeled abstracts (any condition), run **gene/protein NER**, and **normalize** symbols (MyGene + optional Wikipedia fallback). Backend: **FastAPI**. UI: **React (Vite)**.
 
@@ -21,7 +21,7 @@ Pipeline runs write CSV snapshots under `data/projects/<id>/outputs/last_run/` (
 ## Setup
 
 ```bash
-cd /path/to/GeneMiner-DKD
+cd /path/to/L2G
 python3.13 -m venv .venv
 source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install -e ".[api]"
@@ -207,13 +207,13 @@ Run this notebook on Google Colab to expose the backend using a free GPU.
    - Set:
    ```bash
    VITE_COLAB_GITHUB_USERNAME=drkalani
-   VITE_COLAB_GITHUB_REPO=GeneMiner
+   VITE_COLAB_GITHUB_REPO=L2G
    VITE_COLAB_GITHUB_BRANCH=main
    ```
    Replace values for your fork if needed.
 
-2. Open GeneMiner home page and click **Open Colab notebook** (it points to
-   `https://colab.research.google.com/github/$VITE_COLAB_GITHUB_USERNAME/$VITE_COLAB_GITHUB_REPO/blob/$VITE_COLAB_GITHUB_BRANCH/colab_geneminer_backend.ipynb`).
+2. Open L2G home page and click **Open Colab notebook** (it points to
+   `https://colab.research.google.com/github/$VITE_COLAB_GITHUB_USERNAME/$VITE_COLAB_GITHUB_REPO/blob/$VITE_COLAB_GITHUB_BRANCH/colab_l2g_backend.ipynb`).
 
 3. In Colab notebook, run the environment setup cells.
    - It installs backend dependencies, starts FastAPI in background, and opens an ngrok tunnel.
@@ -231,7 +231,7 @@ Run this notebook on Google Colab to expose the backend using a free GPU.
    - If CORS is still blocked, set temporary Colab dev fallback:
      - `CORS_ALLOW_ALL=true` and (recommended) `CORS_ALLOW_CREDENTIALS=false`
      in step 4 before backend startup, then restart from step 4.
-   - If the browser or DevTools show `ngrok-error-code: ERR_NGROK_6024` and `content-type: text/html` for `/health`, that is **ngrok’s free-tier interstitial page**, not your API. The GeneMiner UI sends `ngrok-skip-browser-warning` automatically for ngrok hosts; rebuild/redeploy the frontend if you still see the HTML page.
+   - If the browser or DevTools show `ngrok-error-code: ERR_NGROK_6024` and `content-type: text/html` for `/health`, that is **ngrok’s free-tier interstitial page**, not your API. The L2G UI sends `ngrok-skip-browser-warning` automatically for ngrok hosts; rebuild/redeploy the frontend if you still see the HTML page.
    - If CORS still fails after that, open `colab_uvicorn_backend.log` and confirm the startup line includes:
      `Loaded CORS origins: [...]` and that your exact origin is present.
 
@@ -301,7 +301,7 @@ Set token before compose (optional, but recommended):
 export HF_TOKEN=your_hf_token_here
 ```
 
-For HTTPS on `geneminer.aiteb.app`, create `.env` and set these values:
+For HTTPS on `l2g.aiteb.app`, create `.env` and set these values:
 
 ```bash
 cp .env.example .env
@@ -310,9 +310,9 @@ cp .env.example .env
 Edit `.env`:
 
 ```bash
-SSL_DOMAIN=geneminer.aiteb.app
-SSL_DOMAIN_ALIASES=www.geneminer.aiteb.app
-SSL_EMAIL=ops@geneminer.aiteb.app
+SSL_DOMAIN=l2g.aiteb.app
+SSL_DOMAIN_ALIASES=www.l2g.aiteb.app
+SSL_EMAIL=ops@l2g.aiteb.app
 ```
 
 Run one of:
@@ -343,7 +343,7 @@ docker compose up -d gateway
 # 3) Run SSL issuance, then verify cert files exist
 CERTBOT_MODE=webroot ./scripts/ssl_manage.sh ssl-manual
 # Check:
-ls -l /etc/letsencrypt/live/geneminer.aiteb.app/fullchain.pem
+ls -l /etc/letsencrypt/live/l2g.aiteb.app/fullchain.pem
 ```
 
 Then launch the full stack:
@@ -356,18 +356,18 @@ If certbot still returns `404` for ACME paths, validate gateway challenge routin
 
 ```bash
 # Create a test file inside the gateway webroot and verify it is reachable
-docker exec -it geneminer-gateway sh -c "mkdir -p /var/www/certbot/.well-known/acme-challenge && echo ok > /var/www/certbot/.well-known/acme-challenge/test-gateway"
-curl -i http://geneminer.aiteb.app/.well-known/acme-challenge/test-gateway
+docker exec -it l2g-gateway sh -c "mkdir -p /var/www/certbot/.well-known/acme-challenge && echo ok > /var/www/certbot/.well-known/acme-challenge/test-gateway"
+curl -i http://l2g.aiteb.app/.well-known/acme-challenge/test-gateway
 ```
 
 Expected output: `HTTP/1.1 200 OK` with body `ok`.
 
 Open:
 
-- App UI: [https://geneminer.aiteb.app](https://geneminer.aiteb.app) (gateway proxy on 443)
-- API docs: [https://geneminer.aiteb.app/api/docs](https://geneminer.aiteb.app/api/docs)
+- App UI: [https://l2g.aiteb.app](https://l2g.aiteb.app) (gateway proxy on 443)
+- API docs: [https://l2g.aiteb.app/api/docs](https://l2g.aiteb.app/api/docs)
 - Health check: [http://localhost:8000/health](http://localhost:8000/health)
-- Gateway health check: [https://geneminer.aiteb.app/health](https://geneminer.aiteb.app/health)
+- Gateway health check: [https://l2g.aiteb.app/health](https://l2g.aiteb.app/health)
 
 This compose stack now uses:
 
@@ -395,12 +395,12 @@ docker compose build --build-arg VITE_API_BASE=https://api.example.com frontend
 docker compose up frontend
 ```
 
-Project artifacts are persisted in `${HOME}/geneminer-data` (mounted to `/app/data`) and `${HOME}/.cache/huggingface` in `docker-compose.yml`.
+Project artifacts are persisted in `${HOME}/l2g-data` (mounted to `/app/data`) and `${HOME}/.cache/huggingface` in `docker-compose.yml`.
 
 Before first run, ensure host paths exist and are writable:
 
 ```bash
-mkdir -p "${HOME}/geneminer-data" "${HOME}/.cache/huggingface"
+mkdir -p "${HOME}/l2g-data" "${HOME}/.cache/huggingface"
 ```
 
 You can run this helper before starting services:
@@ -412,19 +412,19 @@ You can run this helper before starting services:
 Optional overrides:
 
 ```bash
-GENEMINER_DATA_DIR=/path/to/storage ./scripts/ensure_storage_paths.sh
+L2G_DATA_DIR=/path/to/storage ./scripts/ensure_storage_paths.sh
 HF_CACHE_DIR=/path/to/hf-cache ./scripts/ensure_storage_paths.sh
 ```
 
 ## Core library
 
-Importable Python package `geneminer_core` (installed with `pip install -e .`):
+Importable Python package `l2g_core` (installed with `pip install -e .`):
 
-- `geneminer_core.devices`: `resolve_torch_device("cuda"|"mps"|"cpu"|"auto")`
-- `geneminer_core.relevance`: train + predict BioBERT classifier
-- `geneminer_core.ner`: Hugging Face NER pipeline (default BENT-PubMedBERT)
-- `geneminer_core.normalization`: character rules + MyGene + optional Wikipedia
-- `geneminer_core.pipeline`: orchestration helpers
+- `l2g_core.devices`: `resolve_torch_device("cuda"|"mps"|"cpu"|"auto")`
+- `l2g_core.relevance`: train + predict BioBERT classifier
+- `l2g_core.ner`: Hugging Face NER pipeline (default BENT-PubMedBERT)
+- `l2g_core.normalization`: character rules + MyGene + optional Wikipedia
+- `l2g_core.pipeline`: orchestration helpers
 
 ## API overview
 

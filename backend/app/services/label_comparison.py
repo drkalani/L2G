@@ -1,4 +1,4 @@
-"""Compare binary labels (e.g. GeneMiner vs LitSuggest-style scores)."""
+"""Compare binary labels (e.g. L2G vs LitSuggest-style scores)."""
 
 from __future__ import annotations
 

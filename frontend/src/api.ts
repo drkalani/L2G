@@ -1,7 +1,7 @@
-const STORAGE_KEY = "geneminer-api-base";
+const STORAGE_KEY = "l2g-api-base";
 const DEFAULT_API_BASE = (import.meta.env.VITE_API_BASE || "/api").replace(/\/$/, "");
 const FALLBACK_API_BASE = "/api";
-const API_BASE_CHANGED = "geneminer:api-base-changed";
+const API_BASE_CHANGED = "l2g:api-base-changed";
 
 const sanitizeBase = (value: string): string => {
   let base = (value || "").trim().replace(/\/$/, "");

@@ -1,4 +1,4 @@
-"""Colab smoke checks for newly added Geneminer endpoints.
+"""Colab smoke checks for newly added L2G endpoints.
 
 This script validates:
 - API health

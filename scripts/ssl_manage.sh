@@ -5,9 +5,9 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 ENV_FILE="${ENV_FILE:-$ROOT/.env}"
 COMPOSE_FILE="${COMPOSE_FILE:-$ROOT/docker-compose.yml}"
 COMPOSE_CMD="${COMPOSE_CMD:-}"
-SERVICE="${GATEWAY_SERVICE:-geneminer-gateway}"
+SERVICE="${GATEWAY_SERVICE:-l2g-gateway}"
 
-SSL_DOMAIN="${SSL_DOMAIN:-geneminer.aiteb.app}"
+SSL_DOMAIN="${SSL_DOMAIN:-l2g.aiteb.app}"
 SSL_DOMAIN_ALIASES="${SSL_DOMAIN_ALIASES:-}"
 SSL_EMAIL="${SSL_EMAIL:-ops@${SSL_DOMAIN}}"
 SSL_CERTBOT_WEBROOT="${SSL_CERTBOT_WEBROOT:-/var/www/certbot}"
@@ -276,7 +276,7 @@ Commands:
   ssl-setup-cron  Create/update cron for ssl-auto.
 
 Environment:
-  SSL_DOMAIN             Primary domain (default: geneminer.aiteb.app)
+  SSL_DOMAIN             Primary domain (default: l2g.aiteb.app)
   SSL_DOMAIN_ALIASES     Aliases (comma or space separated)
   SSL_EMAIL              ACME contact email
   SSL_CERTBOT_WEBROOT    ACME webroot (default: /var/www/certbot)

@@ -1,1 +1,1 @@
-"""GeneMiner FastAPI application."""
+"""L2G FastAPI application."""

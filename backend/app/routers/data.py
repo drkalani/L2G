@@ -115,7 +115,7 @@ def export_artifact(
 
     body, media = dataset_io.export_dataframe_bytes(df, file_format, sheet_name=artifact)
     ext = {"csv": "csv", "xlsx": "xlsx", "pkl": "pkl"}[file_format]
-    fname = f"geneminer_{artifact}.{ext}"
+    fname = f"l2g_{artifact}.{ext}"
     return Response(
         content=body,
         media_type=media,

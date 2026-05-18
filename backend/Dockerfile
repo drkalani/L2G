@@ -13,7 +13,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 COPY pyproject.toml /app/pyproject.toml
-COPY geneminer_core /app/geneminer_core
+COPY l2g_core /app/l2g_core
 COPY backend /app/backend
 
 RUN pip install --upgrade pip \

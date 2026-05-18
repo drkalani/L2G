@@ -26,11 +26,11 @@ function statusColor(status: StepStatus): string {
   return "var(--muted)";
 }
 
-const COLAB_NOTEBOOK_PATH = "colab_geneminer_backend.ipynb";
+const COLAB_NOTEBOOK_PATH = "colab_l2g_backend.ipynb";
 
 function getColabNotebookUrl(): string {
   const githubUser = (import.meta.env.VITE_COLAB_GITHUB_USERNAME || "drkalani").trim() || "drkalani";
-  const githubRepo = (import.meta.env.VITE_COLAB_GITHUB_REPO || "GeneMiner-DKD").trim() || "GeneMiner-DKD";
+  const githubRepo = (import.meta.env.VITE_COLAB_GITHUB_REPO || "L2G").trim() || "L2G";
   const githubBranch = (import.meta.env.VITE_COLAB_GITHUB_BRANCH || "main").trim() || "main";
 
   return `https://colab.research.google.com/github/${githubUser}/${githubRepo}/blob/${githubBranch}/${COLAB_NOTEBOOK_PATH}`;
@@ -131,7 +131,7 @@ export function HomePage() {
         Literature mining for any disease domain
       </h1>
       <p style={{ color: "var(--muted)", fontSize: "1.05rem" }}>
-        GeneMiner helps researchers train a relevance classifier on{" "}
+        L2G helps researchers train a relevance classifier on{" "}
         <strong>your</strong> labeled abstracts, run gene/protein NER, and
         normalize symbols—on GPU, Apple Silicon Metal, or CPU.
       </p>
